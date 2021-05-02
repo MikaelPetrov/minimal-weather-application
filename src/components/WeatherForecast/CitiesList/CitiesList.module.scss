@@ -1,0 +1,89 @@
+.header {
+  height: 19px;
+  padding-bottom: 27px;
+  padding-top: 28px;
+  font-family: Barlow;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #999999;
+}
+
+.field {
+  position: relative;
+  height: 79px;
+  background: linear-gradient(180deg, #ffffff 55.7%, rgba(255, 255, 255, 0) 100%);
+  z-index: 2;
+}
+
+.cities {
+  padding: 0 20px;
+  position: relative;
+  text-align: left;
+  top: -40px;
+  letter-spacing: -0.05em;
+  z-index: 1;
+
+  &__group {
+    padding: 9px 15px;
+    height: 48px;
+    font-family: Barlow;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 48px;
+    color: #aaaaaa;
+  }
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 15px;
+
+  &__name {
+    height: 22px;
+    font-family: Barlow;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #444444;
+    cursor: pointer;
+  }
+
+  &__temp {
+    text-align: right;
+    font-family: Barlow;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #666666;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background: #f3f3f3;
+  border-radius: 4px;
+  margin-left: 20px;
+  height: 40px;
+  width: 335px;
+
+  &__input {
+    padding: 0;
+    border: 0;
+    margin-left: 15px;
+    width: 293px;
+    background: #f3f3f3;
+    outline: none;
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__location-icon {
+    height: 16px;
+    width: 11.02px;
+  }
+}

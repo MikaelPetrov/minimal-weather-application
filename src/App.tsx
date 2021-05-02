@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { memo } from "react";
+import "./App.css";
+import WeatherBackground from "./components/WeatherBackground/WeatherBackground";
+import WeatherForecast from "./components/WeatherForecast/WeatherForecast";
+import { useGetCitiesListData } from "./hooks/useGetCitiesListData";
+import { useGetWeatherForecast } from "./hooks/useGetWeatherForecast";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
+  const { citiesListData, setSearchValue } = useGetCitiesListData();
+  const {
+    activeMode,
+    currentCityData,
+    weatherForecast,
+    setActiveMode,
+    setCurrentCityData,
+    setWeatherForecast,
+  } = useGetWeatherForecast();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <WeatherBackground />
+      <WeatherForecast
+        activeMode={activeMode}
+        citiesListData={citiesListData}
+        currentCityData={currentCityData}
+        weatherForecast={weatherForecast}
+        setSearchValue={setSearchValue}
+        setActiveMode={setActiveMode}
+        setCurrentCityData={setCurrentCityData}
+        setWeatherForecast={setWeatherForecast}
+      />
     </div>
   );
-}
+};
 
-export default App;
+export default memo(App);
