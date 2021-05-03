@@ -1,14 +1,14 @@
-import { TypeTempListData } from "./types";
 import { useEffect, useState } from "react";
 import { instance } from "../api/api";
-import { ABSOLUTE_ZERO } from "./constants";
 import { toFormatTime, toGroupListData, toSortListData } from "../utils/helpers";
+import { ABSOLUTE_ZERO } from "./constants";
+import { TypeGroupListData, TypeTempListData } from "./types";
 
 export function useGetCitiesListData() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [tempListData, setTempListData] = useState<TypeTempListData>();
   const [arrayListData, setArrayListData] = useState<TypeTempListData[]>([]);
-  const [citiesListData, setCitiesListData] = useState<TypeTempListData[]>([]);
+  const [citiesListData, setCitiesListData] = useState<TypeGroupListData>();
 
   async function getCityListData(searchValue: string) {
     try {
@@ -45,7 +45,7 @@ export function useGetCitiesListData() {
 
   useEffect(() => {
     const sortedList: TypeTempListData[] = toSortListData(arrayListData);
-    const groupedList: TypeTempListData[] = toGroupListData(sortedList);
+    const groupedList: TypeGroupListData = toGroupListData(sortedList);
     setCitiesListData(groupedList);
   }, [arrayListData]);
 

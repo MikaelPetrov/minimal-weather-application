@@ -1,28 +1,33 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { TypeTempListData, TypeWeatherForecast } from "../../hooks/types";
+import { TypeGroupListData, TypeTempListData, TypeWeatherForecast } from "../../hooks/types";
 import CitiesList from "./CitiesList/CitiesList";
 import Forecast from "./Forecast/Forecast";
 import styles from "./WeatherForecast.module.scss";
 
 type Props = {
   activeMode: boolean;
-  citiesListData: TypeTempListData[];
+  citiesListData: TypeGroupListData;
   currentCityData: TypeTempListData;
   weatherForecast: TypeWeatherForecast;
   setActiveMode: (activeMode: boolean) => void;
   setSearchValue: (searchValue: string) => void;
-  setCurrentCityData: (currentCityData: any) => void;
-  setWeatherForecast: (weatherForecast: any) => void;
+  setCurrentCityData: (currentCityData: TypeTempListData) => void;
+  setWeatherForecast: (weatherForecast: TypeWeatherForecast) => void;
 };
 
 const WeatherForecast: React.FC<Props> = (props): JSX.Element => {
   return (
-    <div className={classNames(styles["body"], { [styles["body_activated"]]: props.activeMode })}>
+    <div
+      className={classNames(styles["body"], {
+        [styles["body_activated"]]: props.activeMode && props.currentCityData.id,
+      })}
+    >
       {!props.activeMode ? (
         <CitiesList
           activeMode={props.activeMode}
           citiesListData={props.citiesListData}
+          currentCityData={props.currentCityData}
           setSearchValue={props.setSearchValue}
           setCurrentCityData={props.setCurrentCityData}
           setActiveMode={props.setActiveMode}

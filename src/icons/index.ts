@@ -6,6 +6,7 @@ export { daytimeIcon } from "./daytimeIcon";
 export { hazyIcon } from "./hazyIcon";
 export { humidityIcon } from "./humidityIcon";
 export { modalLocationIcon } from "./modalLocationIcon";
+export { nightIcon } from "./nightIcon";
 export { pressureIcon } from "./pressureIcon";
 export { rainyIcon } from "./rainyIcon";
 export { searchLocationIcon } from "./searchLocationIcon";

@@ -48,16 +48,15 @@
 
 .status {
   margin: auto 0;
-  width: 50px;
+  width: 70px;
+  text-align: left;
 
   &__icon {
-    margin: 0 auto;
     width: 40px;
     height: 40px;
   }
 
   &__text {
-    margin: 0 auto;
     font-family: Barlow;
     font-weight: 500;
     font-size: 18px;
@@ -94,7 +93,7 @@
 
 .temp-align {
   margin: auto 0;
-  width: 50px;
+  width: 70px;
 }
 
 .temp-diff {
@@ -168,19 +167,24 @@
 
 .forecast {
   margin: 0 auto;
-  height: 101px;
+  height: auto;
   width: 345px;
   display: flex;
-  justify-content: space-between;
+  overflow-x: scroll;
 }
 
 .daily {
-  width: 95px;
+  margin-right: 20px;
+  min-width: 95px;
   height: 101px;
   background: #ffffff;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   cursor: pointer;
+
+  &:last-child {
+    margin-right: 0px;
+  }
 
   &__icon {
     margin: 0 auto;

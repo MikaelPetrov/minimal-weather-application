@@ -1,7 +1,8 @@
 import moment from "moment";
+import { TypeGroupListData, TypeTempListData } from "../hooks/types";
 
-export function toSortListData(array: any) {
-  const data = array.sort((a: any, b: any) => {
+export function toSortListData(array: TypeTempListData[]) {
+  const data = array.sort((a, b) => {
     if (a.name > b.name) return 1;
     if (a.name < b.name) return -1;
     return 0;
@@ -9,11 +10,14 @@ export function toSortListData(array: any) {
   return data;
 }
 
-export function toGroupListData(array: any) {
-  const data = array.reduce((row: any, city: any) => {
-    if (!row[city.name[0]]) row[city.name[0]] = { group: city.name[0], cities: [city] };
-    else row[city.name[0]].cities.push(city);
-    return row;
+export function toGroupListData(array: TypeTempListData[]) {
+  const data = array.reduce((accum: TypeGroupListData, city: TypeTempListData) => {
+    if (!accum[city.name[0]]) {
+      accum[city.name[0]] = { group: city.name[0], cities: [city] };
+    } else {
+      accum[city.name[0]].cities.push(city);
+    }
+    return accum;
   }, {});
   return data;
 }
