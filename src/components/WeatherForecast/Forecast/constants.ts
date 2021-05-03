@@ -1,4 +1,4 @@
-import { humidityIcon, pressureIcon, windIcon, sunriseIcon, sunsetIcon, daytimeIcon } from "../../../icons";
+import { daytimeIcon, humidityIcon, pressureIcon, sunriseIcon, sunsetIcon, windIcon } from "../../../icons";
 
 export const weatherParams = [
   [

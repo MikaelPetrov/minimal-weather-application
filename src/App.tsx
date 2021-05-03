@@ -18,12 +18,12 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <div className="App">
-      <WeatherBackground />
+      <WeatherBackground currentCityData={currentCityData!} />
       <WeatherForecast
         activeMode={activeMode}
         citiesListData={citiesListData}
-        currentCityData={currentCityData}
-        weatherForecast={weatherForecast}
+        currentCityData={currentCityData!}
+        weatherForecast={weatherForecast!}
         setSearchValue={setSearchValue}
         setActiveMode={setActiveMode}
         setCurrentCityData={setCurrentCityData}

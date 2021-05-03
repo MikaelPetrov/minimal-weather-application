@@ -1,4 +1,4 @@
 export type TypeIcon = {
-  path: any;
+  path: string;
   viewBox: string;
 };
