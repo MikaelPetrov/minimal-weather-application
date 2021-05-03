@@ -20,8 +20,12 @@ export function useGetWeatherForecast() {
           new Date(1970, 0, 1, 0, 0, data.current.dt + data.timezone_offset, 0),
           "dddd, D MMMM YYYY | h:mmA"
         ),
-        weather: data.current.weather[0].main,
-        temp: { day: Math.round(data.current.temp - ABSOLUTE_ZERO), max: null, min: null },
+        weather: data.current.weather,
+        temp: {
+          day: Math.round(data.current.temp - ABSOLUTE_ZERO),
+          max: Math.round(data.daily[0].temp.max - ABSOLUTE_ZERO),
+          min: Math.round(data.daily[0].temp.min - ABSOLUTE_ZERO),
+        },
         humidity: data.current.humidity,
         pressure: (data.current.pressure / 1000).toFixed(3),
         wind_speed: (data.current.wind_speed * 1.60934).toFixed(1),
@@ -33,58 +37,20 @@ export function useGetWeatherForecast() {
         daily: data.daily.map((obj: TypeDaily) => {
           return {
             dt: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.dt + data.timezone_offset, 0), "dddd, D"),
-            weather: obj.weather[0].main,
+            weather: obj.weather,
             temp: {
               day: Math.round(obj.temp.day! - ABSOLUTE_ZERO),
               max: Math.round(obj.temp.max! - ABSOLUTE_ZERO),
               min: Math.round(obj.temp.min! - ABSOLUTE_ZERO),
             },
             humidity: obj.humidity,
-            pressure: (obj.pressure / 1000).toFixed(3),
-            wind_speed: (obj.wind_speed * 1.60934).toFixed(1),
+            pressure: (+obj.pressure / 1000).toFixed(3),
+            wind_speed: (+obj.wind_speed * 1.60934).toFixed(1),
             sunrise: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunrise + data.timezone_offset, 0), "h:mm A"),
             sunset: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset + data.timezone_offset, 0), "h:mm A"),
             daytime: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset - +obj.sunrise, 0), "HH{b} mm{c}")
               .replace("{b}", "h")
               .replace("{c}", "m"),
-            daily: data.daily.map((obj: TypeDaily) => {
-              return {
-                dt: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.dt + data.timezone_offset, 0), "dddd, D"),
-                weather: obj.weather[0].main,
-                temp: {
-                  day: Math.round(obj.temp.day! - ABSOLUTE_ZERO),
-                  max: Math.round(obj.temp.max! - ABSOLUTE_ZERO),
-                  min: Math.round(obj.temp.min! - ABSOLUTE_ZERO),
-                },
-                humidity: obj.humidity,
-                pressure: (obj.pressure / 1000).toFixed(3),
-                wind_speed: (obj.wind_speed * 1.60934).toFixed(1),
-                sunrise: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunrise + data.timezone_offset, 0), "h:mm A"),
-                sunset: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset + data.timezone_offset, 0), "h:mm A"),
-                daytime: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset - +obj.sunrise, 0), "HH{b} mm{c}")
-                  .replace("{b}", "h")
-                  .replace("{c}", "m"),
-                daily: data.daily.map((obj: TypeDaily) => {
-                  return {
-                    dt: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.dt + data.timezone_offset, 0), "dddd, D"),
-                    weather: obj.weather[0].main,
-                    temp: {
-                      day: Math.round(obj.temp.day! - ABSOLUTE_ZERO),
-                      max: Math.round(obj.temp.max! - ABSOLUTE_ZERO),
-                      min: Math.round(obj.temp.min! - ABSOLUTE_ZERO),
-                    },
-                    humidity: obj.humidity,
-                    pressure: (obj.pressure / 1000).toFixed(3),
-                    wind_speed: (obj.wind_speed * 1.60934).toFixed(1),
-                    sunrise: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunrise + data.timezone_offset, 0), "h:mm A"),
-                    sunset: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset + data.timezone_offset, 0), "h:mm A"),
-                    daytime: toFormatTime(new Date(1970, 0, 1, 0, 0, +obj.sunset - +obj.sunrise, 0), "HH{b} mm{c}")
-                      .replace("{b}", "h")
-                      .replace("{c}", "m"),
-                  };
-                }),
-              };
-            }),
           };
         }),
       });

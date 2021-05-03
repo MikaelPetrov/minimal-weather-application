@@ -4,7 +4,7 @@ import Icon from "../../../uiKit/Icon";
 import styles from "./CitiesList.module.scss";
 
 type Props = {
-  setSearchValue: any;
+  setSearchValue: (searchValue: string) => void;
 };
 
 const SearchBar: React.FC<Props> = (props): JSX.Element => {

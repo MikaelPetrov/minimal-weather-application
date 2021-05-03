@@ -1,3 +1,5 @@
+// typification tempListData
+
 export type TypeTempListData = {
   id: number;
   name: string;
@@ -14,9 +16,18 @@ export type TypeCoord = {
   lon: number;
 };
 
+export type TypeGroupListData = {
+  [key: string]: {
+    cities: TypeTempListData[];
+    group: string;
+  };
+};
+
+// typification weatherForecast
+
 export type TypeWeatherForecast = {
   dt: string;
-  weather: string;
+  weather: TypeWeather[];
   temp: TypeTemp;
   humidity: number;
   pressure: string;
@@ -29,20 +40,14 @@ export type TypeWeatherForecast = {
 
 export type TypeDaily = {
   dt: string;
-  weather: any;
+  weather: TypeWeather[];
   temp: TypeTemp;
   humidity: number;
-  pressure: number;
-  wind_speed: number;
+  pressure: string;
+  wind_speed: string;
   sunrise: string;
   sunset: string;
   daytime: string;
-};
-
-export type TypeTemp = {
-  day: number | null;
-  max: number | null;
-  min: number | null;
 };
 
 export type TypeWeather = {
@@ -50,4 +55,10 @@ export type TypeWeather = {
   main: string;
   description: string;
   icon: string;
+};
+
+export type TypeTemp = {
+  day: number | null;
+  max: number | null;
+  min: number | null;
 };

@@ -1,22 +1,41 @@
-import { daytimeIcon, humidityIcon, pressureIcon, sunriseIcon, sunsetIcon, windIcon } from "../../../icons";
+import {
+  cloudyIcon,
+  daytimeIcon,
+  hazyIcon,
+  humidityIcon,
+  pressureIcon,
+  rainyIcon,
+  snowyIcon,
+  sunnyIcon,
+  sunriseIcon,
+  sunsetIcon,
+  windIcon,
+} from "../../../icons";
+
+export const HUMIDITY = "HUMIDITY";
+export const PRESSURE = "PRESSURE";
+export const WIND_SPEED = "WIND_SPEED";
+export const SUNRISE = "SUNRISE";
+export const SUNSET = "SUNSET";
+export const DAYTIME = "DAYTIME";
 
 export const weatherParams = [
   [
     {
       iconName: humidityIcon,
-      valueName: "humidity",
+      valueName: HUMIDITY,
       fieldName: "Humidity",
       unit: " %",
     },
     {
       iconName: pressureIcon,
-      valueName: "pressure",
+      valueName: PRESSURE,
       fieldName: "Pressure",
       unit: " mBar",
     },
     {
       iconName: windIcon,
-      valueName: "wind_speed",
+      valueName: WIND_SPEED,
       fieldName: "Wind",
       unit: " km/h",
     },
@@ -24,21 +43,44 @@ export const weatherParams = [
   [
     {
       iconName: sunriseIcon,
-      valueName: "sunrise",
+      valueName: SUNRISE,
       fieldName: "Sunrise",
       unit: "",
     },
     {
       iconName: sunsetIcon,
-      valueName: "sunset",
+      valueName: SUNSET,
       fieldName: "Sunset",
       unit: "",
     },
     {
       iconName: daytimeIcon,
-      valueName: "daytime",
+      valueName: DAYTIME,
       fieldName: "Daytime",
       unit: "",
     },
   ],
+];
+
+export const dailyIcons = [
+  {
+    iconName: sunnyIcon,
+    weatherName: "Clear",
+  },
+  {
+    iconName: cloudyIcon,
+    weatherName: "Clouds",
+  },
+  {
+    iconName: hazyIcon,
+    weatherName: "Hazy",
+  },
+  {
+    iconName: rainyIcon,
+    weatherName: "Rain",
+  },
+  {
+    iconName: snowyIcon,
+    weatherName: "Snow",
+  },
 ];
