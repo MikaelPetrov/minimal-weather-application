@@ -1,13 +1,14 @@
 import { memo } from "react";
+import { TypeTempListData } from "../../../hooks/types";
 import styles from "./CitiesList.module.scss";
 import SearchBar from "./SearchBar";
 
 type Props = {
-  activeMode: any;
-  citiesListData: any;
-  setSearchValue: any;
-  setCurrentCityData: any;
-  setActiveMode: any;
+  activeMode: boolean;
+  citiesListData: TypeTempListData[];
+  setActiveMode: (activeMode: boolean) => void;
+  setSearchValue: (searchValue: string) => void;
+  setCurrentCityData: (currentCityData: any) => void;
 };
 
 const CitiesList: React.FC<Props> = (props): JSX.Element => {

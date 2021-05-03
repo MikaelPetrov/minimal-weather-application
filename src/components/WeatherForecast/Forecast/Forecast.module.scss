@@ -47,16 +47,17 @@
 }
 
 .status {
+  margin: auto 0;
+  width: 50px;
+
   &__icon {
     margin: 0 auto;
-    padding-top: 15.22px;
     width: 40px;
-    height: 29.57px;
+    height: 40px;
   }
 
   &__text {
     margin: 0 auto;
-    padding-top: 4.22px;
     font-family: Barlow;
     font-weight: 500;
     font-size: 18px;
@@ -91,45 +92,28 @@
   }
 }
 
+.temp-align {
+  margin: auto 0;
+  width: 50px;
+}
+
 .temp-diff {
-  text-align: right;
-}
-
-.temp-max {
-  padding-top: 17px;
   font-family: Barlow;
   font-weight: 300;
   font-size: 16px;
   line-height: 19px;
   display: flex;
+  justify-content: flex-end;
+
+  &:last-child {
+    padding-top: 12px;
+  }
 
   &__value {
-    height: 19px;
     color: #666666;
   }
 
   &__icon {
-    padding-left: 1px;
-    height: 8px;
-    width: 5px;
-  }
-}
-
-.temp-min {
-  padding-top: 12px;
-  font-family: Barlow;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 19px;
-  display: flex;
-
-  &__value {
-    height: 19px;
-    color: #666666;
-  }
-
-  &__icon {
-    position: relative;
     padding-left: 1px;
     height: 8px;
     width: 5px;
@@ -196,6 +180,7 @@
   background: #ffffff;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
+  cursor: pointer;
 
   &__icon {
     margin: 0 auto;
@@ -222,8 +207,7 @@
   }
 }
 
-.daily-temp-max,
-.daily-temp-min {
+.day-temp {
   display: flex;
   padding: 0 3px;
 
@@ -237,7 +221,9 @@
   }
 
   &__icon {
-    padding: 1px 0 2px 0;
+    position: relative;
+    top: -10px;
+    padding: 1px 0 2px 2px;
     height: 7px;
     width: 5px;
   }

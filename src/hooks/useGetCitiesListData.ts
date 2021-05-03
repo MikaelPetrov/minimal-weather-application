@@ -1,23 +1,28 @@
+import { TypeTempListData } from "./types";
 import { useEffect, useState } from "react";
 import { instance } from "../api/api";
-import { ABSOLUTE_ZERO } from "../constants/constants";
-import { toGroupListData, toSortListData } from "../utils/helpers";
+import { ABSOLUTE_ZERO } from "./constants";
+import { toFormatTime, toGroupListData, toSortListData } from "../utils/helpers";
 
-export function useGetCitiesListData(): any {
+export function useGetCitiesListData() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [tempListData, setTempListData] = useState<any>();
-  const [arrayListData, setArrayListData] = useState<any>([]);
-  const [citiesListData, setCitiesListData] = useState<any>([]);
+  const [tempListData, setTempListData] = useState<TypeTempListData>();
+  const [arrayListData, setArrayListData] = useState<TypeTempListData[]>([]);
+  const [citiesListData, setCitiesListData] = useState<TypeTempListData[]>([]);
 
   async function getCityListData(searchValue: string) {
     try {
       const response = await instance.get(`weather?q=${searchValue.toLowerCase()}`);
+      const data = response.data;
       setTempListData({
-        id: response.data.id,
-        name: response.data.name,
-        country: response.data.sys.country,
-        coord: response.data.coord,
-        temp: Math.round(response.data.main.temp - ABSOLUTE_ZERO),
+        id: data.id,
+        name: data.name,
+        country: data.sys.country,
+        coord: data.coord,
+        temp: Math.round(data.main.temp - ABSOLUTE_ZERO),
+        dt: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.dt + data.timezone, 0), "")) / 1000,
+        sunrise: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.sys.sunrise + data.timezone, 0), "")) / 1000,
+        sunset: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.sys.sunset + data.timezone, 0), "")) / 1000,
       });
       return {};
     } catch {
@@ -32,15 +37,15 @@ export function useGetCitiesListData(): any {
   }, [searchValue]);
 
   useEffect(() => {
-    const filteredCity = arrayListData.filter((obj: any) => obj.id === tempListData.id)[0]?.id;
+    const filteredCity = arrayListData.filter((obj: TypeTempListData) => obj.id === tempListData?.id)[0]?.id;
     if (tempListData?.id !== filteredCity) {
-      setArrayListData((prevState: any) => prevState.concat(tempListData));
+      setArrayListData((prevState: TypeTempListData[]) => prevState.concat(tempListData!));
     }
   }, [tempListData, arrayListData]);
 
   useEffect(() => {
-    const sortedList = toSortListData(arrayListData);
-    const groupedList = toGroupListData(sortedList);
+    const sortedList: TypeTempListData[] = toSortListData(arrayListData);
+    const groupedList: TypeTempListData[] = toGroupListData(sortedList);
     setCitiesListData(groupedList);
   }, [arrayListData]);
 

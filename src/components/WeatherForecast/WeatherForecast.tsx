@@ -1,19 +1,19 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { TypeWeatherForecast } from "./types";
+import { TypeTempListData, TypeWeatherForecast } from "../../hooks/types";
 import CitiesList from "./CitiesList/CitiesList";
 import Forecast from "./Forecast/Forecast";
 import styles from "./WeatherForecast.module.scss";
 
 type Props = {
-  activeMode: any;
-  citiesListData: any;
-  currentCityData: any;
+  activeMode: boolean;
+  citiesListData: TypeTempListData[];
+  currentCityData: TypeTempListData;
   weatherForecast: TypeWeatherForecast;
-  setSearchValue: any;
-  setActiveMode: any;
-  setCurrentCityData: any;
-  setWeatherForecast: any;
+  setActiveMode: (activeMode: boolean) => void;
+  setSearchValue: (searchValue: string) => void;
+  setCurrentCityData: (currentCityData: any) => void;
+  setWeatherForecast: (weatherForecast: any) => void;
 };
 
 const WeatherForecast: React.FC<Props> = (props): JSX.Element => {

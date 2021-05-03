@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function toSortListData(array: any) {
   const data = array.sort((a: any, b: any) => {
     if (a.name > b.name) return 1;
@@ -14,4 +16,8 @@ export function toGroupListData(array: any) {
     return row;
   }, {});
   return data;
+}
+
+export function toFormatTime(time: Date | string, timeFormat: string) {
+  return moment(time).format(timeFormat);
 }
