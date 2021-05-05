@@ -9,6 +9,8 @@ import {
   sunnyIcon,
   sunriseIcon,
   sunsetIcon,
+  vectorDownIcon,
+  vectorUpIcon,
   windIcon,
 } from "../../../icons";
 
@@ -18,6 +20,8 @@ export const WIND_SPEED = "WIND_SPEED";
 export const SUNRISE = "SUNRISE";
 export const SUNSET = "SUNSET";
 export const DAYTIME = "DAYTIME";
+export const MAIN_TEMP_DIFF = "MAIN_TEMP_DIFF";
+export const DAILY_TEMP_DIFF = "DAILY_TEMP_DIFF";
 
 export const weatherParams = [
   [
@@ -82,5 +86,16 @@ export const dailyIcons = [
   {
     iconName: snowyIcon,
     weatherName: "Snow",
+  },
+];
+
+export const vectorIcons = [
+  {
+    indexValue: 1,
+    iconName: vectorUpIcon,
+  },
+  {
+    indexValue: 2,
+    iconName: vectorDownIcon,
   },
 ];

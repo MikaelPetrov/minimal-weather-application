@@ -5,7 +5,7 @@
   &__date {
     text-align: center;
     padding: 10px 0;
-    width: 100%;
+    min-width: 100%;
     font-family: Barlow;
     font-size: 14px;
     line-height: 17px;
@@ -32,15 +32,15 @@
   }
 
   &__location-icon {
-    padding-left: 5.87px;
+    padding-left: 6px;
     height: 12px;
-    width: 8.27px;
+    width: 8px;
   }
 }
 
 .main {
   margin: 0 auto 40px;
-  width: 282px;
+  width: 260px;
   height: 77px;
   display: flex;
   justify-content: space-between;
@@ -101,11 +101,18 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 19px;
-  display: flex;
-  justify-content: flex-end;
+
+  &:first-child {
+    display: none;
+  }
 
   &:last-child {
     padding-top: 12px;
+  }
+
+  &__align {
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__value {
@@ -113,20 +120,21 @@
   }
 
   &__icon {
-    padding-left: 1px;
+    padding-left: 2px;
     height: 8px;
-    width: 5px;
+    width: 8px;
   }
 }
 
 .weather {
   &__row {
-    margin-bottom: 40px;
+    max-width: 320px;
+    margin: 0 auto 24px;
     display: flex;
     justify-content: space-between;
 
     &:last-child {
-      margin-bottom: 24px;
+      margin: 0 auto 40px;
     }
   }
 }
@@ -144,7 +152,6 @@
   &__value {
     margin: 0 auto;
     padding-bottom: 4px;
-    height: 19px;
     font-family: Barlow;
     font-weight: 500;
     font-size: 16px;
@@ -155,7 +162,6 @@
 
   &__text {
     margin: 0 auto;
-    height: 10px;
     font-family: Barlow;
     font-weight: 500;
     font-size: 8px;
@@ -167,16 +173,15 @@
 
 .forecast {
   margin: 0 auto;
-  height: auto;
-  width: 345px;
+  max-width: 305px;
   display: flex;
   overflow-x: scroll;
 }
 
 .daily {
-  margin-right: 20px;
+  margin: 0 10px 0 0;
   min-width: 95px;
-  height: 101px;
+  height: 100px;
   background: #ffffff;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
@@ -212,8 +217,14 @@
 }
 
 .day-temp {
-  display: flex;
-  padding: 0 3px;
+  &:first-child {
+    display: none;
+  }
+
+  &__align {
+    display: flex;
+    padding: 0 3px;
+  }
 
   &__value {
     font-family: Barlow;
