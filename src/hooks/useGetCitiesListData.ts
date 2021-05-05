@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { instance } from "../api/api";
-import { toFormatTime, toGroupListData, toSortListData } from "../utils/helpers";
+import { toFindCities, toFormatTime, toGroupListData, toSortListData } from "../utils/helpers";
 import { ABSOLUTE_ZERO } from "./constants";
 import { TypeGroupListData, TypeTempListData } from "./types";
 
 export function useGetCitiesListData() {
   const [searchValue, setSearchValue] = useState<string>("");
+  const [filterValue, setFilterValue] = useState<string>("");
   const [tempListData, setTempListData] = useState<TypeTempListData>();
   const [arrayListData, setArrayListData] = useState<TypeTempListData[]>([]);
+  const [filteredListData, setFilteredListData] = useState<TypeTempListData[]>([]);
   const [citiesListData, setCitiesListData] = useState<TypeGroupListData>();
 
   async function getCityListData(searchValue: string) {
@@ -44,13 +46,20 @@ export function useGetCitiesListData() {
   }, [tempListData, arrayListData]);
 
   useEffect(() => {
-    const sortedList: TypeTempListData[] = toSortListData(arrayListData);
+    const findedCity: TypeTempListData[] = toFindCities(arrayListData, filterValue);
+    setFilteredListData(findedCity);
+  }, [arrayListData, filterValue]);
+
+  useEffect(() => {
+    const sortedList: TypeTempListData[] = toSortListData(filteredListData);
     const groupedList: TypeGroupListData = toGroupListData(sortedList);
     setCitiesListData(groupedList);
-  }, [arrayListData]);
+  }, [filteredListData]);
 
   return {
+    filterValue,
     citiesListData,
     setSearchValue,
+    setFilterValue,
   };
 }

@@ -1,6 +1,11 @@
 import moment from "moment";
 import { TypeGroupListData, TypeTempListData } from "../hooks/types";
 
+export function toFindCities(array: TypeTempListData[], filterValue: string) {
+  const data = array.filter((value) => value.name.toLowerCase().includes(filterValue.toLowerCase()));
+  return data;
+}
+
 export function toSortListData(array: TypeTempListData[]) {
   const data = array.sort((a, b) => {
     if (a.name > b.name) return 1;

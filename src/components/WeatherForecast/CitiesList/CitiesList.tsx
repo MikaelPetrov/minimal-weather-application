@@ -6,10 +6,12 @@ import SearchBar from "./SearchBar";
 
 type Props = {
   activeMode: boolean;
+  filterValue: string;
   citiesListData: TypeGroupListData;
   currentCityData: TypeTempListData;
   setActiveMode: (activeMode: boolean) => void;
   setSearchValue: (searchValue: string) => void;
+  setFilterValue: (filterValue: string) => void;
   setCurrentCityData: (currentCityData: TypeTempListData) => void;
 };
 
@@ -23,7 +25,11 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
     <>
       <div className={styles["header"]}>Location</div>
       <div className={styles["field"]}>
-        <SearchBar setSearchValue={props.setSearchValue} />
+        <SearchBar
+          setSearchValue={props.setSearchValue}
+          setFilterValue={props.setFilterValue}
+          filterValue={props.filterValue}
+        />
       </div>
       <div className={styles["list-box"]}>
         {props.citiesListData &&
@@ -45,7 +51,7 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
                   >
                     {city.name + ", " + city.country}
                   </div>
-                  <div className={styles["city__temp"]}>{city.temp + "°C"}</div>
+                  <div className={styles["city__temp"]}>{city.temp}°C</div>
                 </div>
               ))}
             </div>

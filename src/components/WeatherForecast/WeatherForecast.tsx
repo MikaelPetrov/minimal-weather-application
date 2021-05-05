@@ -7,11 +7,13 @@ import styles from "./WeatherForecast.module.scss";
 
 type Props = {
   activeMode: boolean;
+  filterValue: string;
   citiesListData: TypeGroupListData;
   currentCityData: TypeTempListData;
   weatherForecast: TypeWeatherForecast;
   setActiveMode: (activeMode: boolean) => void;
   setSearchValue: (searchValue: string) => void;
+  setFilterValue: (filterValue: string) => void;
   setCurrentCityData: (currentCityData: TypeTempListData) => void;
   setWeatherForecast: (weatherForecast: TypeWeatherForecast) => void;
 };
@@ -26,9 +28,11 @@ const WeatherForecast: React.FC<Props> = (props): JSX.Element => {
       {!props.activeMode ? (
         <CitiesList
           activeMode={props.activeMode}
+          filterValue={props.filterValue}
           citiesListData={props.citiesListData}
           currentCityData={props.currentCityData}
           setSearchValue={props.setSearchValue}
+          setFilterValue={props.setFilterValue}
           setCurrentCityData={props.setCurrentCityData}
           setActiveMode={props.setActiveMode}
         />

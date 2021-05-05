@@ -1,5 +1,3 @@
-export { arrowDownIcon } from "./arrowDownIcon";
-export { arrowUpIcon } from "./arrowUpIcon";
 export { cloudyIcon } from "./cloudyIcon";
 export { dayIcon } from "./dayIcon";
 export { daytimeIcon } from "./daytimeIcon";
