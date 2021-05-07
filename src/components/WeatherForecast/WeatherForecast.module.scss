@@ -1,14 +1,15 @@
 .body {
-  margin-top: 8%;
+  position: fixed;
   min-width: 100%;
   height: -webkit-fill-available;
-  position: absolute;
-  border-radius: 20px 20px 0px 0px;
-  background: #ffffff;
-  box-shadow: 0px -16px 40px rgba(0, 0, 0, 0.2);
+  margin-top: 8%;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.2);
 
   &_activated {
-    margin-top: 75%;
+    position: absolute;
     height: 525px;
+    margin-top: 75%;
   }
 }

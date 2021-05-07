@@ -7,6 +7,7 @@ import { TypeGroupListData, TypeTempListData } from "./types";
 export function useGetCitiesListData() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filterValue, setFilterValue] = useState<string>("");
+  const [cityIdValue, setCityIdValue] = useState<number>();
   const [tempListData, setTempListData] = useState<TypeTempListData>();
   const [arrayListData, setArrayListData] = useState<TypeTempListData[]>([]);
   const [filteredListData, setFilteredListData] = useState<TypeTempListData[]>([]);
@@ -56,10 +57,18 @@ export function useGetCitiesListData() {
     setCitiesListData(groupedList);
   }, [filteredListData]);
 
+  useEffect(() => {
+    setArrayListData((prevState: TypeTempListData[]) => prevState.filter((value) => value.id !== cityIdValue));
+    setTempListData(undefined);
+    setCityIdValue(undefined);
+    setSearchValue("");
+  }, [cityIdValue]);
+
   return {
     filterValue,
     citiesListData,
     setSearchValue,
     setFilterValue,
+    setCityIdValue,
   };
 }
