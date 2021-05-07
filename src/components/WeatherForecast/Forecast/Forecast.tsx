@@ -41,7 +41,7 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
     });
   };
 
-  const onSetWeatherForecast = (obj: TypeDaily) => {
+  const onSetWeatherForecast = (obj: TypeDaily | TypeWeatherForecast) => {
     props.setWeatherForecast({
       dt: obj.dt,
       weather: obj.weather,

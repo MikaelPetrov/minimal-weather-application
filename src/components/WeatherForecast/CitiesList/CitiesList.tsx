@@ -5,13 +5,13 @@ import styles from "./CitiesList.module.scss";
 import SearchBar from "./SearchBar";
 
 type Props = {
-  activeMode: boolean;
   filterValue: string;
   citiesListData: TypeGroupListData;
   currentCityData: TypeTempListData;
   setActiveMode: (activeMode: boolean) => void;
   setSearchValue: (searchValue: string) => void;
   setFilterValue: (filterValue: string) => void;
+  setCityIdValue: (cityIdValue: number) => void;
   setCurrentCityData: (currentCityData: TypeTempListData) => void;
 };
 
@@ -21,14 +21,28 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
     props.setCurrentCityData(city);
   };
 
+  const onSetDeleteCityData = (city: TypeTempListData) => {
+    props.setCityIdValue(city.id!);
+    props.setCurrentCityData({
+      id: null,
+      name: "",
+      country: "",
+      coord: null,
+      temp: null,
+      dt: 0,
+      sunrise: 0,
+      sunset: 0,
+    });
+  };
+
   return (
     <>
       <div className={styles["header"]}>Location</div>
       <div className={styles["field"]}>
         <SearchBar
+          filterValue={props.filterValue}
           setSearchValue={props.setSearchValue}
           setFilterValue={props.setFilterValue}
-          filterValue={props.filterValue}
         />
       </div>
       <div className={styles["list-box"]}>
@@ -51,7 +65,10 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
                   >
                     {city.name + ", " + city.country}
                   </div>
-                  <div className={styles["city__temp"]}>{city.temp}°C</div>
+                  <div className={styles["city__temp"]}>
+                    {city.temp}°C
+                    <div className={styles["city__cross"]} onClick={() => onSetDeleteCityData(city)}></div>
+                  </div>
                 </div>
               ))}
             </div>

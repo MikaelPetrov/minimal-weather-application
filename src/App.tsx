@@ -6,7 +6,7 @@ import { useGetCitiesListData } from "./hooks/useGetCitiesListData";
 import { useGetWeatherForecast } from "./hooks/useGetWeatherForecast";
 
 const App: React.FC = (): JSX.Element => {
-  const { filterValue, citiesListData, setSearchValue, setFilterValue } = useGetCitiesListData();
+  const { filterValue, citiesListData, setSearchValue, setFilterValue, setCityIdValue } = useGetCitiesListData();
   const {
     activeMode,
     currentCityData,
@@ -25,9 +25,10 @@ const App: React.FC = (): JSX.Element => {
         citiesListData={citiesListData!}
         currentCityData={currentCityData!}
         weatherForecast={weatherForecast!}
+        setActiveMode={setActiveMode}
         setSearchValue={setSearchValue}
         setFilterValue={setFilterValue}
-        setActiveMode={setActiveMode}
+        setCityIdValue={setCityIdValue}
         setCurrentCityData={setCurrentCityData}
         setWeatherForecast={setWeatherForecast}
       />

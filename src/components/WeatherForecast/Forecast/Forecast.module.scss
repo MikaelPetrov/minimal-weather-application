@@ -3,52 +3,52 @@
   align-items: center;
 
   &__date {
-    text-align: center;
-    padding: 10px 0;
-    min-width: 100%;
     font-family: Barlow;
     font-size: 14px;
     line-height: 17px;
-    color: #999999;
+    min-width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    color: #999;
   }
 
   &__city {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0;
     width: 100%;
-    background: rgba(13, 159, 234, 0.08);
+    padding: 10px 0;
     border-radius: 20px 20px 0 0;
+    background: rgba(13, 159, 234, 0.08);
   }
 
   &__name {
-    cursor: pointer;
     font-family: Barlow;
-    font-weight: 500;
     font-size: 16px;
+    font-weight: 500;
     line-height: 19px;
+    cursor: pointer;
     color: #0da0ea;
   }
 
   &__location-icon {
-    padding-left: 6px;
-    height: 12px;
     width: 8px;
+    height: 12px;
+    padding-left: 6px;
   }
 }
 
 .main {
-  margin: 0 auto 40px;
-  width: 260px;
-  height: 77px;
   display: flex;
   justify-content: space-between;
+  width: 260px;
+  height: 77px;
+  margin: 0 auto 40px;
 }
 
 .status {
-  margin: auto 0;
   width: 70px;
+  margin: auto 0;
   text-align: left;
 
   &__icon {
@@ -58,48 +58,48 @@
 
   &__text {
     font-family: Barlow;
-    font-weight: 500;
     font-size: 18px;
+    font-weight: 500;
     line-height: 22px;
     letter-spacing: -0.05em;
-    color: #000000;
+    color: #000;
   }
 }
 
 .temp {
-  display: flex;
   position: relative;
+  display: flex;
 
   &__value {
     font-family: Barlow;
-    font-weight: 300;
     font-size: 64px;
+    font-weight: 300;
     line-height: 77px;
     letter-spacing: -0.05em;
-    color: #000000;
+    color: #000;
   }
 
   &__unit {
+    font-family: Barlow;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    position: absolute;
     top: 11px;
     right: -28px;
-    position: absolute;
-    font-family: Barlow;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    color: #666666;
+    color: #666;
   }
 }
 
 .temp-align {
-  margin: auto 0;
   width: 70px;
+  margin: auto 0;
 }
 
 .temp-diff {
   font-family: Barlow;
-  font-weight: 300;
   font-size: 16px;
+  font-weight: 300;
   line-height: 19px;
 
   &:first-child {
@@ -116,22 +116,22 @@
   }
 
   &__value {
-    color: #666666;
+    color: #666;
   }
 
   &__icon {
-    padding-left: 2px;
-    height: 8px;
     width: 8px;
+    height: 8px;
+    padding-left: 2px;
   }
 }
 
 .weather {
   &__row {
-    max-width: 320px;
-    margin: 0 auto 24px;
     display: flex;
     justify-content: space-between;
+    max-width: 320px;
+    margin: 0 auto 24px;
 
     &:last-child {
       margin: 0 auto 40px;
@@ -143,71 +143,71 @@
   width: calc(100% / 3);
 
   &__icon {
-    margin: 0 auto;
     width: 24px;
     height: 24px;
+    margin: 0 auto;
     padding-bottom: 12px;
   }
 
   &__value {
+    font-family: Barlow;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
     margin: 0 auto;
     padding-bottom: 4px;
-    font-family: Barlow;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
     letter-spacing: -0.05em;
-    color: #444444;
+    color: #444;
   }
 
   &__text {
-    margin: 0 auto;
     font-family: Barlow;
-    font-weight: 500;
     font-size: 8px;
+    font-weight: 500;
     line-height: 10px;
+    margin: 0 auto;
     letter-spacing: 0.1em;
-    color: #999999;
+    color: #999;
   }
 }
 
 .forecast {
-  margin: 0 auto;
-  max-width: 305px;
   display: flex;
   overflow-x: scroll;
+  max-width: 305px;
+  margin: 0 auto;
 }
 
 .daily {
-  margin: 0 10px 0 0;
   min-width: 95px;
   height: 100px;
-  background: #ffffff;
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  margin: 0 10px 0 0;
   cursor: pointer;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 
   &:last-child {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   &__icon {
-    margin: 0 auto;
     width: 24px;
     height: 24px;
+    margin: 0 auto;
     padding-top: 16px;
     padding-bottom: 12px;
   }
 
   &__time {
+    font-family: Barlow;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
     margin: 0 auto;
     padding-bottom: 4px;
-    font-family: Barlow;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
     letter-spacing: -0.05em;
-    color: #444444;
+    color: #444;
   }
 
   &__temp {
@@ -228,18 +228,18 @@
 
   &__value {
     font-family: Barlow;
-    font-weight: 500;
     font-size: 8px;
+    font-weight: 500;
     line-height: 10px;
     letter-spacing: 0.1em;
-    color: #999999;
+    color: #999;
   }
 
   &__icon {
     position: relative;
     top: -10px;
-    padding: 1px 0 2px 2px;
-    height: 7px;
     width: 5px;
+    height: 7px;
+    padding: 1px 0 2px 2px;
   }
 }

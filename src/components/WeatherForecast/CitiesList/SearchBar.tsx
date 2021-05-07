@@ -15,7 +15,7 @@ const SearchBar: React.FC<Props> = (props): JSX.Element => {
       <input
         className={styles["search__input"]}
         type="search"
-        name="searchInput"
+        name="SearchInput"
         onChange={(event) => {
           props.setFilterValue(event.currentTarget.value);
         }}

@@ -1,14 +1,14 @@
 // typification tempListData
 
 export type TypeTempListData = {
-  id: number;
+  id: number | null;
   name: string;
   country: string;
   coord: TypeCoord | null;
-  temp: number;
-  dt: number;
-  sunrise: number;
-  sunset: number;
+  temp: number | null;
+  dt: number | 0;
+  sunrise: number | 0;
+  sunset: number | 0;
 };
 
 export type TypeCoord = {

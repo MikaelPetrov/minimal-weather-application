@@ -14,6 +14,7 @@ type Props = {
   setActiveMode: (activeMode: boolean) => void;
   setSearchValue: (searchValue: string) => void;
   setFilterValue: (filterValue: string) => void;
+  setCityIdValue: (cityIdValue: number) => void;
   setCurrentCityData: (currentCityData: TypeTempListData) => void;
   setWeatherForecast: (weatherForecast: TypeWeatherForecast) => void;
 };
@@ -27,14 +28,14 @@ const WeatherForecast: React.FC<Props> = (props): JSX.Element => {
     >
       {!props.activeMode ? (
         <CitiesList
-          activeMode={props.activeMode}
           filterValue={props.filterValue}
           citiesListData={props.citiesListData}
           currentCityData={props.currentCityData}
+          setActiveMode={props.setActiveMode}
           setSearchValue={props.setSearchValue}
           setFilterValue={props.setFilterValue}
+          setCityIdValue={props.setCityIdValue}
           setCurrentCityData={props.setCurrentCityData}
-          setActiveMode={props.setActiveMode}
         />
       ) : (
         <Forecast
