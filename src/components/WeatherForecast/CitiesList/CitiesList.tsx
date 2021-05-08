@@ -23,16 +23,18 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
 
   const onSetDeleteCityData = (city: TypeTempListData) => {
     props.setCityIdValue(city.id!);
-    props.setCurrentCityData({
-      id: null,
-      name: "",
-      country: "",
-      coord: null,
-      temp: null,
-      dt: 0,
-      sunrise: 0,
-      sunset: 0,
-    });
+    if (props.currentCityData?.id === city.id) {
+      props.setCurrentCityData({
+        id: null,
+        name: "",
+        country: "",
+        coord: null,
+        temp: null,
+        dt: 0,
+        sunrise: 0,
+        sunset: 0,
+      });
+    }
   };
 
   return (
