@@ -6,9 +6,9 @@ export type TypeTempListData = {
   country: string;
   coord: TypeCoord | null;
   temp: number | null;
-  dt: number | 0;
-  sunrise: number | 0;
-  sunset: number | 0;
+  dt: number;
+  sunrise: number;
+  sunset: number;
 };
 
 export type TypeCoord = {
