@@ -49,19 +49,21 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
       </div>
       <div className={styles["list-box"]}>
         {props.citiesListData &&
-          Object.values(props.citiesListData).map((cities, citiesIndex) => (
-            <div key={citiesIndex} className={styles["cities"]}>
+          Object.values(props.citiesListData).map((cities) => (
+            <div key={cities.group} className={styles["cities"]}>
               <div className={styles["cities__group"]}>{cities.group}</div>
-              {cities.cities.map((city, cityIndex) => (
+              {cities.cities.map((city) => (
                 <div
-                  key={cityIndex}
+                  key={city.id}
                   className={classNames(styles["city"], {
-                    [styles["city_active"]]: props.currentCityData?.id === city.id,
+                    [styles["city_active"]]:
+                      props.currentCityData?.id === city.id,
                   })}
                 >
                   <div
                     className={classNames(styles["city__name"], {
-                      [styles["city__name_active"]]: props.currentCityData?.id === city.id,
+                      [styles["city__name_active"]]:
+                        props.currentCityData?.id === city.id,
                     })}
                     onClick={() => onSetCityData(city)}
                   >
@@ -69,7 +71,10 @@ const CitiesList: React.FC<Props> = (props): JSX.Element => {
                   </div>
                   <div className={styles["city__temp"]}>
                     {city.temp}°C
-                    <div className={styles["city__cross"]} onClick={() => onSetDeleteCityData(city)}></div>
+                    <div
+                      className={styles["city__cross"]}
+                      onClick={() => onSetDeleteCityData(city)}
+                    ></div>
                   </div>
                 </div>
               ))}

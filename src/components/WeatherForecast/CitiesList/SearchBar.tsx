@@ -20,12 +20,17 @@ const SearchBar: React.FC<Props> = (props): JSX.Element => {
           props.setFilterValue(event.currentTarget.value);
         }}
         onKeyDown={(event) => {
-          (event.code === "Enter" || event.code === "NumpadEnter") && props.setSearchValue(event.currentTarget.value);
+          (event.code === "Enter" || event.code === "NumpadEnter") &&
+            props.setSearchValue(event.currentTarget.value);
         }}
       />
       {props.filterValue === "" && (
         <div className={styles["search__location-icon"]}>
-          <Icon path={searchLocationIcon.path} viewBox={searchLocationIcon.viewBox} title="SearchLocationIcon" />
+          <Icon
+            path={searchLocationIcon.path}
+            viewBox={searchLocationIcon.viewBox}
+            title="SearchLocationIcon"
+          />
         </div>
       )}
     </div>

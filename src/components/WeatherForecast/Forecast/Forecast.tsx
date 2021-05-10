@@ -1,6 +1,10 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { TypeDaily, TypeTempListData, TypeWeatherForecast } from "../../../hooks/types";
+import {
+  TypeDaily,
+  TypeTempListData,
+  TypeWeatherForecast,
+} from "../../../hooks/types";
 import { dayIcon, modalLocationIcon, nightIcon } from "../../../icons";
 import Icon from "../../../uiKit/Icon";
 import {
@@ -75,7 +79,10 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
     }
   };
 
-  const getTempDifference = (obj: TypeDaily | TypeWeatherForecast, type: string): JSX.Element => (
+  const getTempDifference = (
+    obj: TypeDaily | TypeWeatherForecast,
+    type: string
+  ): JSX.Element => (
     <>
       {Object.values(obj.temp).map((item, itemIndex) => (
         <div
@@ -85,9 +92,9 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
             { [styles["day-temp"]]: type === DAILY_TEMP_DIFF }
           )}
         >
-          {vectorIcons.map((elem, elemIndex) => (
+          {vectorIcons.map((elem) => (
             <div
-              key={elemIndex}
+              key={elem.type}
               className={classNames(
                 { [styles["temp-diff__align"]]: type === MAIN_TEMP_DIFF },
                 { [styles["day-temp__align"]]: type === DAILY_TEMP_DIFF }
@@ -110,7 +117,11 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
                     )}
                   >
                     {itemIndex === elem.indexValue && (
-                      <Icon path={elem.iconName.path} viewBox={elem.iconName.viewBox} title="VectorIcon" />
+                      <Icon
+                        path={elem.iconName.path}
+                        viewBox={elem.iconName.viewBox}
+                        title="VectorIcon"
+                      />
                     )}
                   </div>
                 </>
@@ -143,28 +154,45 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
           <div className={styles["status__icon"]}>
             {props.currentCityData?.dt > props.currentCityData?.sunrise &&
             props.currentCityData?.dt < props.currentCityData?.sunset ? (
-              <Icon path={dayIcon.path} viewBox={dayIcon.viewBox} title="DayIcon" />
+              <Icon
+                path={dayIcon.path}
+                viewBox={dayIcon.viewBox}
+                title="DayIcon"
+              />
             ) : (
-              <Icon path={nightIcon.path} viewBox={nightIcon.viewBox} title="NightIcon" />
+              <Icon
+                path={nightIcon.path}
+                viewBox={nightIcon.viewBox}
+                title="NightIcon"
+              />
             )}
           </div>
-          <div className={styles["status__text"]}>{props.weatherForecast?.weather[0].main}</div>
+          <div className={styles["status__text"]}>
+            {props.weatherForecast?.weather[0].main}
+          </div>
         </div>
         <div className={styles["temp"]}>
-          <div className={styles["temp__value"]}>{props.weatherForecast?.temp.day}</div>
+          <div className={styles["temp__value"]}>
+            {props.weatherForecast?.temp.day}
+          </div>
           <div className={styles["temp__unit"]}>°C</div>
         </div>
         <div className={styles["temp-align"]}>
-          {props.weatherForecast?.temp && getTempDifference(props.weatherForecast, MAIN_TEMP_DIFF)}
+          {props.weatherForecast?.temp &&
+            getTempDifference(props.weatherForecast, MAIN_TEMP_DIFF)}
         </div>
       </div>
       <div className={styles["weather"]}>
         {weatherParams.map((row, rowIndex) => (
           <div key={rowIndex} className={styles["weather__row"]}>
-            {row.map((par, parIndex) => (
-              <div key={parIndex} className={styles["parameter"]}>
+            {row.map((par) => (
+              <div key={par.type} className={styles["parameter"]}>
                 <div className={styles["parameter__icon"]}>
-                  <Icon path={par.iconName.path} viewBox={par.iconName.viewBox} title="ParameterIcon" />
+                  <Icon
+                    path={par.iconName.path}
+                    viewBox={par.iconName.viewBox}
+                    title="ParameterIcon"
+                  />
                 </div>
                 <div className={styles["parameter__value"]}>
                   {getWeatherParameters(par.valueName)}
@@ -177,19 +205,29 @@ const Forecast: React.FC<Props> = (props): JSX.Element => {
         ))}
       </div>
       <div className={styles["forecast"]}>
-        {props.weatherForecast?.daily?.map((obj, objIndex) => (
-          <div key={objIndex} className={styles["daily"]} onClick={() => onSetWeatherForecast(obj)}>
+        {props.weatherForecast?.daily?.map((obj) => (
+          <div
+            key={obj.dt}
+            className={styles["daily"]}
+            onClick={() => onSetWeatherForecast(obj)}
+          >
             <div className={styles["daily__icon"]}>
-              {dailyIcons.map((elem, elemIndex) => (
-                <div key={elemIndex}>
+              {dailyIcons.map((elem) => (
+                <div key={elem.type}>
                   {obj.weather[0].main === elem.weatherName && (
-                    <Icon path={elem.iconName.path} viewBox={elem.iconName.viewBox} title="WeatherIcon" />
+                    <Icon
+                      path={elem.iconName.path}
+                      viewBox={elem.iconName.viewBox}
+                      title="WeatherIcon"
+                    />
                   )}
                 </div>
               ))}
             </div>
             <div className={styles["daily__time"]}>{obj.dt}</div>
-            <div className={styles["daily__temp"]}>{getTempDifference(obj, DAILY_TEMP_DIFF)}</div>
+            <div className={styles["daily__temp"]}>
+              {getTempDifference(obj, DAILY_TEMP_DIFF)}
+            </div>
           </div>
         ))}
       </div>
