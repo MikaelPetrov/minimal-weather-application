@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { instance } from "../api/api";
-import { toFindCities, toFormatTime, toGroupListData, toSortListData } from "../utils/helpers";
+import {
+  toFindCities,
+  toFormatTime,
+  toGroupListData,
+  toSortListData,
+} from "../utils/helpers";
 import { ABSOLUTE_ZERO } from "./constants";
 import { TypeGroupListData, TypeTempListData } from "./types";
 
@@ -10,12 +15,16 @@ export function useGetCitiesListData() {
   const [cityIdValue, setCityIdValue] = useState<number>();
   const [tempListData, setTempListData] = useState<TypeTempListData>();
   const [arrayListData, setArrayListData] = useState<TypeTempListData[]>([]);
-  const [filteredListData, setFilteredListData] = useState<TypeTempListData[]>([]);
+  const [filteredListData, setFilteredListData] = useState<TypeTempListData[]>(
+    []
+  );
   const [citiesListData, setCitiesListData] = useState<TypeGroupListData>();
 
   async function getCityListData(searchValue: string) {
     try {
-      const response = await instance.get(`weather?q=${searchValue.toLowerCase()}`);
+      const response = await instance.get(
+        `weather?q=${searchValue.toLowerCase()}`
+      );
       const data = response.data;
       setTempListData({
         id: data.id,
@@ -23,9 +32,27 @@ export function useGetCitiesListData() {
         country: data.sys.country,
         coord: data.coord,
         temp: Math.round(data.main.temp - ABSOLUTE_ZERO),
-        dt: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.dt + data.timezone, 0), "")) / 1000,
-        sunrise: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.sys.sunrise + data.timezone, 0), "")) / 1000,
-        sunset: Date.parse(toFormatTime(new Date(1970, 0, 1, 0, 0, data.sys.sunset + data.timezone, 0), "")) / 1000,
+        dt:
+          Date.parse(
+            toFormatTime(
+              new Date(1970, 0, 1, 0, 0, data.dt + data.timezone, 0),
+              ""
+            )
+          ) / 1000,
+        sunrise:
+          Date.parse(
+            toFormatTime(
+              new Date(1970, 0, 1, 0, 0, data.sys.sunrise + data.timezone, 0),
+              ""
+            )
+          ) / 1000,
+        sunset:
+          Date.parse(
+            toFormatTime(
+              new Date(1970, 0, 1, 0, 0, data.sys.sunset + data.timezone, 0),
+              ""
+            )
+          ) / 1000,
       });
       return {};
     } catch {
@@ -40,14 +67,21 @@ export function useGetCitiesListData() {
   }, [searchValue]);
 
   useEffect(() => {
-    const filteredCity = arrayListData.filter((obj: TypeTempListData) => obj.id === tempListData?.id)[0]?.id;
+    const filteredCity = arrayListData.filter(
+      (obj: TypeTempListData) => obj.id === tempListData?.id
+    )[0]?.id;
     if (tempListData?.id !== filteredCity) {
-      setArrayListData((prevState: TypeTempListData[]) => prevState.concat(tempListData!));
+      setArrayListData((prevState: TypeTempListData[]) =>
+        prevState.concat(tempListData!)
+      );
     }
   }, [tempListData, arrayListData]);
 
   useEffect(() => {
-    const findedCity: TypeTempListData[] = toFindCities(arrayListData, filterValue);
+    const findedCity: TypeTempListData[] = toFindCities(
+      arrayListData,
+      filterValue
+    );
     setFilteredListData(findedCity);
   }, [arrayListData, filterValue]);
 
@@ -58,7 +92,9 @@ export function useGetCitiesListData() {
   }, [filteredListData]);
 
   useEffect(() => {
-    setArrayListData((prevState: TypeTempListData[]) => prevState.filter((value) => value.id !== cityIdValue));
+    setArrayListData((prevState: TypeTempListData[]) =>
+      prevState.filter((value) => value.id !== cityIdValue)
+    );
     setTempListData(undefined);
     setCityIdValue(undefined);
     setSearchValue("");

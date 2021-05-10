@@ -1,6 +1,10 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { TypeGroupListData, TypeTempListData, TypeWeatherForecast } from "../../hooks/types";
+import {
+  TypeGroupListData,
+  TypeTempListData,
+  TypeWeatherForecast,
+} from "../../hooks/types";
 import CitiesList from "./CitiesList/CitiesList";
 import Forecast from "./Forecast/Forecast";
 import styles from "./WeatherForecast.module.scss";
@@ -23,7 +27,8 @@ const WeatherForecast: React.FC<Props> = (props): JSX.Element => {
   return (
     <div
       className={classNames(styles["body"], {
-        [styles["body_activated"]]: props.activeMode && props.currentCityData.id,
+        [styles["body_activated"]]:
+          props.activeMode && props.currentCityData.id,
       })}
     >
       {!props.activeMode ? (

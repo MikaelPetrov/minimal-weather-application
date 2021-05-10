@@ -13,9 +13,17 @@ const WeatherBackground: React.FC<Props> = (props): JSX.Element => {
     <>
       {props.currentCityData?.dt > props.currentCityData?.sunrise &&
       props.currentCityData?.dt < props.currentCityData?.sunset ? (
-        <img className={styles["background"]} src={backgroundDayImage} alt="day" />
+        <img
+          className={styles["background"]}
+          src={backgroundDayImage}
+          alt="day"
+        />
       ) : (
-        <img className={styles["background"]} src={backgroundNightImage} alt="night" />
+        <img
+          className={styles["background"]}
+          src={backgroundNightImage}
+          alt="night"
+        />
       )}
     </>
   );
